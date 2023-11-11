@@ -1,3 +1,9 @@
+# App details
+This app takes 10 text inputs from user. Then it uses the provided API to fetch corresponding images for each text. Then it displays the images in a grid of 2*5 to the user.
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

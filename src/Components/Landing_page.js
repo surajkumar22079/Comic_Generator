@@ -17,11 +17,14 @@ const ComicStripGenerator = () => {
         });
     };
 
-    const handleSubmit = async () => {
 
+    //this function is responsible for fetching image data from backed API for each text.
+    const handleSubmit = async () => { 
         try {
             // Clear existing comic panels before making new requests
             setComicPanels([]);
+
+            //now we'll check whether all of the 10 textboxes have input text values. If not, it'll pop up an alert
             for (let i = 0; i < panelTextInputs.length; i++) {
                 if (panelTextInputs[i].length === 0) {
                     alert("Kindly enter all the text values in the boxes provided to you and press the button Generate Comic")
@@ -30,10 +33,10 @@ const ComicStripGenerator = () => {
             }
             setFlag(false);
             // Loop through each panel's text input and make API requests
-            alert("Generating images. Kindly wait for a while to see the result");
-            for (let i = 0; i < panelTextInputs.length; i++) {
+            alert("Generating images. Kindly wait for a while to see the result"); 
 
-
+            //now we'll iterate through all texts and for each text, we'll send a post request to the API and the API returns corresponding image.
+            for (let i = 0; i < panelTextInputs.length; i++) {  
                 const response = await fetch(
                     "https://xdwvg9no7pefghrn.us-east-1.aws.endpoints.huggingface.cloud",
                     {
@@ -53,14 +56,15 @@ const ComicStripGenerator = () => {
                 setComicPanels((prevPanels) => [...prevPanels, imageBlob]);
             }
         } catch (error) {
-            console.error("Error generating comic:", error);
+            console.error("Error generating comic:", error);//if there is error in fetching data from API
         }
     };
 
     return (
         <div className="comic-strip-generator">
             <h1 className='main-title'>Comic Generator</h1>
-            <div className="instruction-box">
+            <div className="instruction-box">  
+                {/* instruction for the user to use our webpage */}
                 <h2>Instructions:</h2>
                 <p>
                     Welcome to our platform! Follow these steps to get started:
@@ -87,7 +91,9 @@ const ComicStripGenerator = () => {
                     </div>
                 ))}
             </form>
-            <button type="button" onClick={handleSubmit} className='submitbtn'>Click here to Generate Comic</button>
+
+            {/* button shown below when clicked runs the function handleSubmit and fetching occurs*/}
+            <button type="button" onClick={handleSubmit} className='submitbtn'>Click here to Generate Comic</button>  
             <h3>Below shown is the desired comic. Hope you like it!</h3>
             {
                 flag &&
@@ -102,8 +108,7 @@ const ComicStripGenerator = () => {
                 </div>
             }
             {/* Display Area for Generated Comic Panels */}
-            <div className="main-comic">
-
+            <div className="main-comic"> 
                 <div className="comic-strip image-grid">
                     {comicPanels.map((panel, index) => (
                         <img
