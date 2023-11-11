@@ -30,6 +30,7 @@ const ComicStripGenerator = () => {
             }
             setFlag(false);
             // Loop through each panel's text input and make API requests
+            alert("Generating images. Kindly wait for a while to see the result");
             for (let i = 0; i < panelTextInputs.length; i++) {
 
 
@@ -54,7 +55,6 @@ const ComicStripGenerator = () => {
         } catch (error) {
             console.error("Error generating comic:", error);
         }
-        console.log(comicPanels);
     };
 
     return (
